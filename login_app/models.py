@@ -24,11 +24,13 @@ class UserManager(models.Manager):
             errors['pw'] = "Password must contain at least eight characters"
         if postData['pw'] != postData['confirm_pw']:
             errors['pw'] = "Passwords do not match"
+        if postData['dob'] == "":
+            errors['dob3'] = "You must enter a date of birth"
         name_regex = re.compile(r'^[a-zA-Z]')
         if not name_regex.match(postData['first_name']):
-            errors['first_name'] = "First name can only contain letters"
+            errors['first_name2'] = "First name can only contain letters"
         if not name_regex.match(postData['last_name']):
-            errors['last_name'] = "Last name can only contain letters"
+            errors['last_name2'] = "Last name can only contain letters"
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         if not EMAIL_REGEX.match(postData['email']):
             errors['email'] = "Invalid email address"
